@@ -1,12 +1,10 @@
 import { ToggleComponent } from "./ToggleComponent/ToggleComponent";
+import { SignupForm } from "./CustomHooks/SignupForm";
 
 function App() {
   return (
     <>
-      <ToggleComponent>
-        <ToggleComponent.Button>Click me</ToggleComponent.Button>
-        <ToggleComponent.Content>Content</ToggleComponent.Content>
-      </ToggleComponent>
+      <SignupForm />
     </>
   );
 }
