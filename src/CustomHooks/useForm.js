@@ -10,7 +10,9 @@ export function useForm(props) {
     }));
   }
 
-  function resetForm() {}
+  function resetForm() {
+    setFormData(props);
+  }
 
   return {
     values: formData,
