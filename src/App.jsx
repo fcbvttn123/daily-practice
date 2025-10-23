@@ -1,15 +1,12 @@
 import { ToggleComponent } from "./ToggleComponent/ToggleComponent";
 import { SignupForm } from "./CustomHooks/SignupForm";
 import { useFetch } from "./CustomHooks/useFetch";
+import { Button1 } from "./components/Button1";
 
 function App() {
-  const { data, error, loading } = useFetch(
-    "https://jsonplaceholder.typicode.com/users"
-  );
-  data && console.log(data);
   return (
     <>
-      <SignupForm />
+      <Button1 />
     </>
   );
 }
