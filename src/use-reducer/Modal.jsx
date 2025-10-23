@@ -20,7 +20,7 @@ function reducer(state, action) {
     case "back":
       return {
         ...state,
-        step: state.step - 1 < 1 ? 1 : state.step - 1,
+        step: Math.max(1, state.step - 1),
       };
     case "close-modal":
       return {
@@ -32,14 +32,26 @@ function reducer(state, action) {
   }
 }
 
-export function Modal() {
+function useModal() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  return {
+    step: state.step,
+    openModal: () => dispatch({ type: "open-modal" }),
+    closeModal: () => dispatch({ type: "close-modal" }),
+    nextStep: () => dispatch({ type: "next-step" }),
+    prevStep: () => dispatch({ type: "back" }),
+  };
+}
+
+export function Modal() {
+  const { step, openModal, closeModal, nextStep, prevStep } = useModal();
   return (
     <div>
-      <button onClick={(e) => dispatch({ type: "open-modal" })}>Open</button>
-      <button onClick={(e) => dispatch({ type: "close-modal" })}>Close</button>
-      <button onClick={(e) => dispatch({ type: "next-step" })}>Next</button>
-      <button onClick={(e) => dispatch({ type: "back" })}>Back</button>
+      <p>{step}</p>
+      <button onClick={openModal}>Open</button>
+      <button onClick={closeModal}>Close</button>
+      <button onClick={nextStep}>Next</button>
+      <button onClick={prevStep}>Back</button>
     </div>
   );
 }
